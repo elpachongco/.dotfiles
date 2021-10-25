@@ -1,0 +1,12 @@
+/etc/apt/sources.list
+~/#!etc!apt!sources.list#
+/sudo:root@debian:/etc/apt/sources.list
+~/#!sudo:root@debian:!etc!apt!sources.list#
+/home/qwerty/Desktop/connect.sh
+~/#!home!qwerty!Desktop!connect.sh#
+/home/qwerty/.emacs.d/init.el
+~/#!home!qwerty!.emacs.d!init.el#
+/home/qwerty/programming/C/Experiments/forScope.c
+~/#!home!qwerty!programming!C!Experiments!forScope.c#
+/usr/share/emacs/27.1/lisp/display-fill-column-indicator.el.gz
+~/#!usr!share!emacs!27.1!lisp!display-fill-column-indicator.el.gz#

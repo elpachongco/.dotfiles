@@ -1,0 +1,67 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/" . "qwerty/")
+ ("/home/qwerty/remotefs/dashboard/client/" . "Public/")
+ ("/home/qwerty/remotefs/dashboard/" . "client/")
+ ("/home/qwerty/remotefs/" . "dashboard/")
+ ("/home/qwerty/" . "remotefs/")
+ ("/home/qwerty/.emacs.d/" . "auto-save-list/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/liinz@"
+ "/liinz@desktop-6hfe066:"
+ "/home/qwerty/remotefs/dashboard/client/Public/"
+ "/home/qwerty/.emacs.d/"
+ "/home/qwerty/remotefs/dashboard/client/src/"
+ "/home/qwerty/"
+ "/home/qwerty/Articles/"
+ "/home/qwerty/Desktop/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "desktop-6hfe066"
+ "D"
+ "components.js"
+ "init.el"
+ "asdf.py"
+ "components.tsx"
+ "asdf.js"
+ "try.tsx"
+ "documentation-driven-development.md"
+ "remote-fs-mount.sh"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/qwerty/Desktop/" (24949 23281 339978 214000) "startup.sh" "ideas" "interesting_tools.txt" "todo" "try.org" "exercises_for_programming.md" "nohup.out" "remote-fs-mount.sh" "./" "keyb-bt-connect.sh" "../" "steam.desktop" "remote-fs-mount.sh~" "connect.sh" "git-PAT")
+
+ ("/home/qwerty/.emacs.d/" (24949 25391 667602 897000) "ido.last~" "auto-save-list/" "eshell/" "init.el" "tutorial/" ".#init.el" "ac-comphist.dat" "elpa/" "./" "init.el~" "tramp" "../" "ido.last" "url/")
+
+ ("/home/qwerty/" (24949 3841 989751 967000) "#foo#" ".pki/" ".local/" "Desktop/" ".mozilla/" "Public/" "Books/" ".bash_logout" "Music/" ".Xauthority" ".bogofilter/" ".cache/" "#!home!qwerty!.emacs.d!init.el#" ".wget-hsts" ".profile" ".cmake/" "#!home!qwerty!remotefs!dashboard!client!src!components.tsx#" "FreeRDP/" "CodingChallenges/" "Templates/" ".python_history" "nohup.out" ".steampath" "Videos/" ".ssh/" ".lesshst" ".vscode-oss/" ".bashrc" ".ICEauthority" "emacs-commands.txt~" ".remina/" "./" ".python_history-05332.tmp" "programming/" "Pictures/" ".emacs.d/" "Recordings/" ".config/" "go/" ".steam/" ".backups-emacs/" "../" "emacs-commands.txt" "#!home!qwerty!remotefs!dashboard!client!src!main.tsx#" "core" "Downloads/" ".i3/" ".steampid" "Documents/" "Articles/" ".bash_history" "#!sudo:root@debian:!etc!apt!sources.list#" ".gnupg/" "tmp/" "#!home!qwerty!remotefs!dashboard!client!Public!components.js#" "remotefs/")
+
+ ("/home/qwerty/remotefs/dashboard/client/Public/" (24937 9960 0 0) "utils.js" "style.css" "main.js" "libs/" "index.html" "components.js" "Barlow-Regular.ttf")
+
+ ("/home/qwerty/remotefs/dashboard/client/" (24943 51003 0 0) "tsconfig.json" "src/" "Public/" "package.json" "Makefile" "app.py" ".vscode/")
+
+ ("/usr/share/info/emacs/" (24936 13383 134227 481000) "../" "./" "efaq.info.gz")
+
+ ("/home/qwerty/remotefs/" (24943 52778 0 0) "startup.bat" "src/" "README.md" "Pipfile.lock" "Pipfile" "main.py" "docs/" "dashboard/" "config/" "CHANGELOG.md" "activity.db" ".gitignore" ".git/")
+
+ ("/home/qwerty/remotefs/dashboard/client/src/" (24943 40934 0 0) "utils.ts" "types.d.ts" "style.scss" "main.tsx" "components.tsx")
+
+ ("/home/qwerty/Articles/" (24943 41574 951678 545000) "todo" "A-year-of-programming.md~" "A-year-of-programming.md" "contentment.md" "stop-forcing.md" "high-level-first.md" "./" "../" "working-with-web.md" "remapping-habits.txt" "documentation-driven-development.md")
+
+ ("/home/qwerty/remotefs/dashboard/" (24937 9960 0 0) "run.py" "README.md" "client/")
+
+ ("/home/" (24897 34990 478851 989000) "qwerty/" "./" "lost+found/" "../" "group_rdp_l_desktop-6hfe066.remmina")
+
+ ("/home/qwerty/.emacs.d/auto-save-list/" (24942 33151 792559 992000) ".saves-2469-debian~" ".saves-10921-debian~" ".saves-1559-debian~" ".saves-3129-debian~" ".saves-21729-debian~" "./" ".saves-22285-debian~" "../")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

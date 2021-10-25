@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/qwerty/.emacs.d'
+let g:netrw_dirhist_6='/home/qwerty/remotefs/dashboard/client/src'
+let g:netrw_dirhist_5='/home/qwerty/remotefs/dashboard/client'
+let g:netrw_dirhist_4='/home/qwerty/remotefs/dashboard/client/src'
+let g:netrw_dirhist_3='/home/qwerty/remotefs/dashboard/client'
+let g:netrw_dirhist_2='/home/qwerty/remotefs/dashboard'
+let g:netrw_dirhist_1='/home/qwerty/remoteserv'
+let g:netrw_dirhist_0='/home/qwerty/remoteserv/py_projects'
+let g:netrw_dirhist_9='/home/qwerty/remoteserv'
+let g:netrw_dirhist_8='/home/qwerty/programming/go/testing'

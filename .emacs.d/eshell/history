@@ -1,0 +1,11 @@
+ls
+cls
+clear
+ls
+ls ./Desktop/
+bash ./Desktop/remote-fs-mount.sh 
+exit
+ssh liinz@desktop-6hfe066
+powershell
+cls
+ssh liinz@desktop-6hfe066
