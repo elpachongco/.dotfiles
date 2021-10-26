@@ -1,0 +1,6 @@
+.emacs.d/auto-save-list/**
+.emacs.d/*.last
+.emacs.d/elpa/**
+.emacs.d/eshell/**
+.emacs.d/*~
+.emacs.d/tramp
