@@ -16,3 +16,7 @@ inside the same directory.
 e.g. $ `ln -sf .config/nvim/ ~/.config/nvim/`
 
 
+* Resources
+
+[[https://depp.brause.cc/dotemacs/#orgef6e599][Literate Emacs configuration]]
+[[https://pages.sachachua.com/.emacs.d/Sacha.html][Sacha's config]]
