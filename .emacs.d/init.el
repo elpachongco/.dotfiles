@@ -97,7 +97,7 @@
 
 ;; Set font for all frames
 (set-frame-font "IBM Plex Mono-11:hinting=true:hintstyle=hintfull\
-:autohint=false:antialias=false" :frames t)
+:autohint=false:antialias=true" :frames t)
 
 ;; Set column rule
 (column-number-mode 1)
