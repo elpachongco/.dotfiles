@@ -76,7 +76,8 @@
   :ensure t
   :init)
 (smartparens-global-mode 1)
-(show-smartparens-global-mode 1)
+;;(show-smartparens-global-mode 1)
+;; ^ This is now replaced by highlight-parentheses mode
 
 ;; Prettify symbols
 (global-prettify-symbols-mode 1)
@@ -108,6 +109,8 @@
 (setq indent-tabs-mode 1)
 (setq-default tab-width 3)
 
+
+;; HELPFUL ======================
 (use-package helpful
   :ensure t)
 
@@ -119,3 +122,41 @@
 ;; Set help buffers to display in current buffer
 (add-to-list 'display-buffer-alist
              '("*Help*" display-buffer-same-window))
+;; Lookup the current symbol at point. C-c C-d is a common keybinding
+;; for this in lisp modes.
+(global-set-key (kbd "C-c C-d") #'helpful-at-point)
+
+;; Look up *F*unctions (excludes macros).
+;;
+;; By default, C-h F is bound to `Info-goto-emacs-command-node'. Helpful
+;; already links to the manual, if a function is referenced there.
+(global-set-key (kbd "C-h F") #'helpful-function)
+
+;; Look up *C*ommands.
+;;
+;; By default, C-h C is bound to describe `describe-coding-system'. I
+;; don't find this very useful, but it's frequently useful to only
+;; look at interactive functions.
+(global-set-key (kbd "C-h C") #'helpful-command)
+
+
+;; HIGLIGHT-PARENS =============================
+;; Add paren highlight when cursor enclosed in paren
+(use-package highlight-parentheses
+  :ensure t :init)
+
+;; turn it on when in prog-mode
+;;(add-hook 'prog-mode-hook #'highlight-parentheses-mode)
+
+;; Enable for minibuffer
+(add-hook 'minibuffer-setup-hook #'highlight-parentheses-minibuffer-setup)
+;; Enable global mode
+(global-highlight-parentheses-mode 1)
+
+
+;; LSP ========================
+;;Eglot lsp
+(use-package eglot
+  :ensure t)
+
+
