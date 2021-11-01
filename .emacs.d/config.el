@@ -1,11 +1,11 @@
 ;;(require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-'("melpa" . "https://melpa.org/packages/"))
+	'("melpa" . "https://melpa.org/packages/"))
 ;;(package-initialize) < already called
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+	(package-refresh-contents)
+	(package-install 'use-package))
 
 (use-package try :ensure t)
 
@@ -15,9 +15,9 @@
 (scroll-bar-mode -1)
 
 (setq backup-directory-alist
-`((".*" . ,"~/.backups-emacs")))
+`((".*" . ,"~/.backups-emacs/")))
 (setq auto-save-file-name-transforms
-`((".*" ,"~/.backups-emacs" t)))
+`((".*" ,"~/.backups-emacs/" t)))
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere 1)
@@ -68,6 +68,8 @@
 ;; don't find this very useful, but it's frequently useful to only
 ;; look at interactive functions.
 (global-set-key (kbd "C-h C") #'helpful-command)
+
+(setq disabled-command-function nil)
 
 ;; Smartparens
 	 (use-package smartparens
@@ -153,6 +155,8 @@
 (setup-tide-mode))))
 	  ;; enable typescript-tslint checker
 	  (flycheck-add-mode 'typescript-tslint 'web-mode)
+
+(add-hook 'python-mode-hook 'eglot-ensure)
 
 ;; Allow <s shortcuts
 (require 'org-tempo)

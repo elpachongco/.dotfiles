@@ -6,8 +6,13 @@ My goal with emacs is to create a productivity environment. Mainly, I'd
 like it to do basic ide functions. Some other functions that I can't live
 without are
 - Remote file editing (TRAMP)
-- ...
-
+** Dependencies
+Here are the dependencies that most likely will not be installed automatically.
+- Nodejs >= 12, npm
+- typescript-language-server. Install with `npm -g install typescript-language-
+server`.
+- eslint
+- pylint
 * Core Setup
 ** Package manager - use-package.el
 Use use-package and add melpa as a repository
@@ -29,7 +34,7 @@ Use use-package and add melpa as a repository
 	#+BEGIN_SRC emacs-lisp
 		(use-package try :ensure t)
 	#+END_SRC
-
+	
 * Better Defaults
 
 Here is where I override emacs defaults to suit my needs.
@@ -42,13 +47,13 @@ Here is where I override emacs defaults to suit my needs.
 (scroll-bar-mode -1)
 #+END_SRC 
 
-** Set a different directory for backups
+** Set a different directory for backups and autosaves
 
 	#+begin_src emacs-lisp
 		(setq backup-directory-alist
-	`((".*" . ,"~/.backups-emacs")))
+	`((".*" . ,"~/.backups-emacs/")))
 	(setq auto-save-file-name-transforms
-	`((".*" ,"~/.backups-emacs" t)))
+	`((".*" ,"~/.backups-emacs/" t)))
 	#+end_src
 
 ** ido-mode, icomplete, ibuffer
@@ -117,6 +122,12 @@ Here is where I override emacs defaults to suit my needs.
 
 	#+end_src
 
+** Enable every deactivated command
+	#+begin_src emacs-lisp
+	(setq disabled-command-function nil)
+	#+end_src
+
+** TODO Automatically choose indentation between spaces or tabs based on the file
 * Programming & Development
 ** General Settings
 *** Parens-related settings
@@ -241,6 +252,12 @@ indentation settings (tab-width).
 
 	 #+end_src
 
+**  Python
+Make sure `pylint`, and `python-lsp-server` are installed.
+#+begin_src emacs-lisp
+(add-hook 'python-mode-hook 'eglot-ensure)
+#+end_src
+
 ** Org 
 
 	#+begin_src emacs-lisp
@@ -248,6 +265,10 @@ indentation settings (tab-width).
 	(require 'org-tempo)
 	#+end_src
 
+*** Agenda
+	 #+begin_src emacs-lisp
+	 (global-set-key "\C-ca" 'org-agenda)	 
+	 #+end_src
 * Theme & Appearance
 
 ** Theme
