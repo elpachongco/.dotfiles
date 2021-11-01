@@ -1,0 +1,264 @@
+#+TITLE: My Emacs config
+#+Author: elpachongco
+
+* Introduction
+My goal with emacs is to create a productivity environment. Mainly, I'd
+like it to do basic ide functions. Some other functions that I can't live
+without are
+- Remote file editing (TRAMP)
+- ...
+
+* Core Setup
+** Package manager - use-package.el
+Use use-package and add melpa as a repository
+#+BEGIN_SRC emacs-lisp
+	;;(require 'package)
+	(setq package-enable-at-startup nil)
+	(add-to-list 'package-archives
+		'("melpa" . "https://melpa.org/packages/"))
+	;;(package-initialize) < already called
+	(unless (package-installed-p 'use-package)
+		(package-refresh-contents)
+		(package-install 'use-package))                                     
+
+#+END_SRC
+
+** Allow trying packages - try.el
+	Try allows the download and install of packages for the current session
+	only.
+	#+BEGIN_SRC emacs-lisp
+		(use-package try :ensure t)
+	#+END_SRC
+
+* Better Defaults
+
+Here is where I override emacs defaults to suit my needs.
+
+** Disable tool, scroll, menu bars, and startup-message
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+#+END_SRC 
+
+** Set a different directory for backups
+
+	#+begin_src emacs-lisp
+		(setq backup-directory-alist
+	`((".*" . ,"~/.backups-emacs")))
+	(setq auto-save-file-name-transforms
+	`((".*" ,"~/.backups-emacs" t)))
+	#+end_src
+
+** ido-mode, icomplete, ibuffer
+	#+begin_src emacs-lisp
+	(setq ido-enable-flex-matching t)
+	(setq ido-everywhere 1)
+	(ido-mode 1)
+	(icomplete-mode 1) 
+	(defalias 'list-buffers 'ibuffer) ; Make ibuffer default
+	#+end_src
+	
+** Better C-x o - ace-window.el o-
+	#+begin_src emacs-lisp
+	;; Show numbers when doing C-x o
+	(use-package ace-window
+  :ensure t
+  :init
+    (global-set-key [remap other-window] 'ace-window)
+    (custom-set-faces
+     '(aw-leading-char-face
+       ((t (:inherit ace-jump-face-foreground :height 3.0)))))
+    )
+
+	#+end_src
+
+** Enable scrolling by line, without moving pointer
+	#+begin_src emacs-lisp
+	(setq scroll-preserve-screen-position 1)
+	(global-set-key (kbd "M-n") (kbd "C-u 1 C-v"))
+	(global-set-key (kbd "M-p") (kbd "C-u 1 M-v"))
+	#+end_src
+
+** Only use y or n instead of yes, no, y, n
+	#+begin_src emacs-lisp
+	(fset 'yes-or-no-p 'y-or-n-p)
+	#+end_src
+** Better help - helpful.el, also remap keys for helpful
+	#+begin_src emacs-lisp
+	(use-package helpful
+  :ensure t)
+
+	(global-set-key (kbd "C-h f") #'helpful-callable)
+;; (global-set-key (kbd "C-h f") #'helpful-function)
+(global-set-key (kbd "C-h v") #'helpful-variable)
+(global-set-key (kbd "C-h k") #'helpful-key)
+
+;; Set help buffers to display in current buffer
+(add-to-list 'display-buffer-alist
+             '("*Help*" display-buffer-same-window))
+;; Lookup the current symbol at point. C-c C-d is a common keybinding
+;; for this in lisp modes.
+(global-set-key (kbd "C-c C-d") #'helpful-at-point)
+
+;; Look up *F*unctions (excludes macros).
+;;
+;; By default, C-h F is bound to `Info-goto-emacs-command-node'. Helpful
+;; already links to the manual, if a function is referenced there.
+(global-set-key (kbd "C-h F") #'helpful-function)
+
+;; Look up *C*ommands.
+;;
+;; By default, C-h C is bound to describe `describe-coding-system'. I
+;; don't find this very useful, but it's frequently useful to only
+;; look at interactive functions.
+(global-set-key (kbd "C-h C") #'helpful-command)
+
+	#+end_src
+
+* Programming & Development
+** General Settings
+*** Parens-related settings
+	 #+begin_src emacs-lisp
+	 ;; Smartparens
+	 (use-package smartparens
+	 :ensure t
+	 :init)
+	 (smartparens-global-mode 1)
+	 ;;(show-smartparens-global-mode 1)
+	 ;; ^ This is now replaced by highlight-parentheses mode
+	 
+	 ;; Highlight parens
+(use-package highlight-parentheses
+  :ensure t :init)
+
+;; turn it on when in prog-mode
+;;(add-hook 'prog-mode-hook #'highlight-parentheses-mode)
+
+;; Enable for minibuffer
+(add-hook 'minibuffer-setup-hook #'highlight-parentheses-minibuffer-setup)
+;; Enable global mode
+(global-highlight-parentheses-mode 1)
+	 #+end_src
+*** Prettify symbols
+	 #+begin_src emacs-lisp
+	 (global-prettify-symbols-mode 1)
+	 #+end_src
+
+*** Autocompletion
+	 #+begin_src emacs-lisp
+	 (use-package company
+	 :ensure t
+	 :init)
+	 (add-hook 'after-init-hook 'global-company-mode)
+	 #+end_src
+
+*** Add a column rule of 80
+I follow this rule for almost all documents except HTML.
+	#+begin_src emacs-lisp
+		(column-number-mode 1)
+		(setq-default fill-column 80)
+		(global-display-fill-column-indicator-mode 80)
+		(display-fill-column-indicator-mode 80)
+	#+end_src
+*** Set indents to tabs and set tab width
+Tabs are better than spaces, it respects the other user's
+indentation settings (tab-width).
+	#+begin_src emacs-lisp
+		(setq indent-tabs-mode 1)
+		(setq-default tab-width 3)
+	#+end_src
+*** Initialize lsp, Eglot
+	 Only initialize. Each language gets an org heading. File extension
+	 handling (hooks) and other language-specific settings will be
+	 handled in the language's specific header below.
+	 
+	 #+begin_src emacs-lisp
+	 (use-package eglot
+	 :ensure t)
+	 #+end_src
+
+** Version Control
+** Web mode and file associations
+	#+begin_src emacs-lisp
+	(use-package web-mode
+	:ensure t)
+
+  ;; Web mode when editing html
+	(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+	;; Web mode when editing other formats
+	(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+	#+end_src
+** Typescript
+*** Typescript mode
+	 #+begin_src emacs-lisp
+	 (use-package typescript-mode
+	 :ensure t)
+	 (add-hook 'typescript-mode-hook 'eglot-ensure)
+	 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+	 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+	 #+end_src
+
+*** Tide mode
+	 #+begin_src emacs-lisp
+	 (use-package tide
+  :ensure t)
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+;; formats the buffer before saving
+(add-hook 'before-save-hook 'tide-format-before-save)
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+	 #+end_src
+
+*** Typescript React - *.tsx hook
+	 #+begin_src emacs-lisp
+	 ;; For editing TSX files
+	 (require 'web-mode)
+	 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+	 (add-hook 'web-mode-hook
+	    (lambda ()
+       (when (string-equal "tsx" (file-name-extension buffer-file-name))
+       (setup-tide-mode))))
+		 ;; enable typescript-tslint checker
+		 (flycheck-add-mode 'typescript-tslint 'web-mode)
+
+	 #+end_src
+
+** Org 
+
+	#+begin_src emacs-lisp
+	;; Allow <s shortcuts
+	(require 'org-tempo)
+	#+end_src
+
+* Theme & Appearance
+
+** Theme
+	#+begin_src emacs-lisp
+	(use-package gruber-darker-theme
+	:ensure t  :init)
+	(load-theme 'gruber-darker t)
+	#+end_src
+** Font face 
+	#+begin_src emacs-lisp
+	;; Set font for all frames
+	(set-frame-font "IBM Plex Mono-11:hinting=true:hintstyle=hintfull\
+	:autohint=false:antialias=true" :frames t)
+	#+end_src
