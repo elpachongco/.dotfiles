@@ -14,6 +14,8 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
+(setq initial-buffer-choice "~/Personal/todo.org")
+
 (setq backup-directory-alist
 `((".*" . ,"~/.backups-emacs/")))
 (setq auto-save-file-name-transforms
@@ -71,6 +73,17 @@
 
 (setq disabled-command-function nil)
 
+(winner-mode 1)
+
+(blink-cursor-mode 0)
+
+(global-hl-line-mode 1)
+
+(line-number-mode -1)
+(column-number-mode 1)
+
+(setq use-dialog-box nil)
+
 ;; Smartparens
 	 (use-package smartparens
 	 :ensure t
@@ -108,6 +121,13 @@
 
 (use-package eglot
 :ensure t)
+
+(use-package evil
+	:ensure t)
+	;; don't enable. use evil-local-mode.
+;;(evil-mode 1)
+
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 (use-package web-mode
       :ensure t)
@@ -160,6 +180,8 @@
 
 ;; Allow <s shortcuts
 (require 'org-tempo)
+
+(global-set-key "\C-ca" 'org-agenda)
 
 (use-package gruber-darker-theme
 :ensure t  :init)

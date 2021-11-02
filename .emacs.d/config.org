@@ -47,6 +47,12 @@ Here is where I override emacs defaults to suit my needs.
 (scroll-bar-mode -1)
 #+END_SRC 
 
+** Change startup buffer to ~/Personal/todo.org
+
+	#+begin_src emacs-lisp
+	(setq initial-buffer-choice "~/Personal/todo.org")
+	#+end_src
+
 ** Set a different directory for backups and autosaves
 
 	#+begin_src emacs-lisp
@@ -128,6 +134,32 @@ Here is where I override emacs defaults to suit my needs.
 	#+end_src
 
 ** TODO Automatically choose indentation between spaces or tabs based on the file
+** Allow restoration of window layouts
+	#+begin_src emacs-lisp
+	(winner-mode 1)
+	#+end_src
+** Disable cursor blinking
+	#+begin_src emacs-lisp
+	(blink-cursor-mode 0)
+	#+end_src
+** Change cursor (pointer) type from bar
+	#+begin_src 
+	(customize-set-variable 'cursor-type 'box)	
+	#+end_src
+** Higlight line where cursor is at
+	#+begin_src emacs-lisp
+	(global-hl-line-mode 1)
+	#+end_src
+
+** Remove line number, retain column number in minibuffer
+	#+begin_src emacs-lisp
+	(line-number-mode -1)
+	(column-number-mode 1)
+	#+end_src
+** Disable dialog boxes
+	#+begin_src emacs-lisp
+	(setq use-dialog-box nil) 
+	#+end_src
 * Programming & Development
 ** General Settings
 *** Parens-related settings
@@ -190,6 +222,21 @@ indentation settings (tab-width).
 	 :ensure t)
 	 #+end_src
 
+*** Evil mode
+I'm okay with the default emacs keybindings because of [[http://ergoemacs.org/emacs/swap_CapsLock_Ctrl.html][this]]. But I believe
+Vim keybindings are easier to use.
+
+#+begin_src emacs-lisp
+  (use-package evil
+	  :ensure t)
+	  ;; don't enable. use evil-local-mode.
+  ;;(evil-mode 1)
+#+end_src
+
+*** Show line number when in prog-mode
+	 #+begin_src emacs-lisp
+	 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+	 #+end_src
 ** Version Control
 ** Web mode and file associations
 	#+begin_src emacs-lisp
@@ -252,14 +299,14 @@ indentation settings (tab-width).
 
 	 #+end_src
 
-**  Python
+** Python
 Make sure `pylint`, and `python-lsp-server` are installed.
 #+begin_src emacs-lisp
 (add-hook 'python-mode-hook 'eglot-ensure)
 #+end_src
 
 ** Org 
-
+	
 	#+begin_src emacs-lisp
 	;; Allow <s shortcuts
 	(require 'org-tempo)
@@ -269,6 +316,7 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 	 #+begin_src emacs-lisp
 	 (global-set-key "\C-ca" 'org-agenda)	 
 	 #+end_src
+*** Capture
 * Theme & Appearance
 
 ** Theme
@@ -283,3 +331,4 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 	(set-frame-font "IBM Plex Mono-11:hinting=true:hintstyle=hintfull\
 	:autohint=false:antialias=true" :frames t)
 	#+end_src
+
