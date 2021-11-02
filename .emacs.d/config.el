@@ -113,8 +113,10 @@
 
 (column-number-mode 1)
 (setq-default fill-column 80)
-(global-display-fill-column-indicator-mode 80)
-(display-fill-column-indicator-mode 80)
+;; Enable automatically on prog mode
+(add-hook 'prog-mode-hook (display-fill-column-indicator-mode 80)) 
+;;(global-display-fill-column-indicator-mode 80)
+;;(display-fill-column-indicator-mode 80)
 
 (setq indent-tabs-mode 1)
 (setq-default tab-width 3)
