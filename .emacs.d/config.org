@@ -224,13 +224,16 @@ indentation settings (tab-width).
 
 *** Evil mode
 I'm okay with the default emacs keybindings because of [[http://ergoemacs.org/emacs/swap_CapsLock_Ctrl.html][this]]. But I believe
-Vim keybindings are easier to use.
+Vim keybindings are easier to use plus I don't have to add tons of other
+plugins to make emacs do text editing as good as vi.
 
-#+begin_src emacs-lisp
-  (use-package evil
-	  :ensure t)
-	  ;; don't enable. use evil-local-mode.
-  ;;(evil-mode 1)
+#+Begin_src emacs-lisp
+	 (use-package evil
+	 :ensure t)
+	 (evil-mode 1)
+
+	 ;; This makes C-[ (escape) work when evil-mode is called
+	 (setq evil-intercept-esc 'always)
 #+end_src
 
 *** Show line number when in prog-mode

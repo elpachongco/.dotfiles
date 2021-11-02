@@ -123,9 +123,11 @@
 :ensure t)
 
 (use-package evil
-	:ensure t)
-	;; don't enable. use evil-local-mode.
-;;(evil-mode 1)
+:ensure t)
+(evil-mode 1)
+
+;; This makes C-[ (escape) work when evil-mode is called
+(setq evil-intercept-esc 'always)
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
