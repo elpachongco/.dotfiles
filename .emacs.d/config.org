@@ -160,6 +160,10 @@ Here is where I override emacs defaults to suit my needs.
 	#+begin_src emacs-lisp
 	(setq use-dialog-box nil) 
 	#+end_src
+** Auto update buffers when file updates
+	#+begin_src emacs-lisp
+	(global-auto-revert-mode t)
+	#+end_src
 * Programming & Development
 ** General Settings
 *** Parens-related settings
