@@ -121,8 +121,7 @@
 (setq indent-tabs-mode 1)
 (setq-default tab-width 3)
 
-(use-package eglot
-:ensure t)
+(use-package eglot :ensure t)
 
 (use-package evil
 :ensure t)
@@ -132,6 +131,13 @@
 (setq evil-intercept-esc 'always)
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+(setq whitespace-style '(face tabs tab-mark))
+(custom-set-faces
+'(whitespace-tab ((t (:foreground "#636363")))))
+(setq whitespace-display-mappings
+'((tab-mark 9 [124 9] [92 9]))) ; 124 is the ascii ID for '\|'
+(global-whitespace-mode) ; Enable whitespace mode everywhere
 
 (use-package web-mode
       :ensure t)
@@ -184,8 +190,17 @@
 
 ;; Allow <s shortcuts
 (require 'org-tempo)
+ (global-set-key (kbd "C-c l") #'org-store-link)
 
-(global-set-key "\C-ca" 'org-agenda)
+(global-set-key (kbd "C-c a") #'org-agenda)
+
+(global-set-key (kbd "C-c c") #'org-capture)
+
+(setq org-capture-templates
+	 '(("t" "Todo" entry (file+headline "~/Personal/todo.org" "Tasks")
+		       "* TODO %?\n  %i\n  %a")
+		       ("j" "Journal" entry (file+datetree "~/Personal/journal.org")
+		       "* %?\nEntered on %U\n  %i\n  %a")))
 
 (use-package gruber-darker-theme
 :ensure t  :init)

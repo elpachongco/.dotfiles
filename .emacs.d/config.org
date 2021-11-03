@@ -214,14 +214,14 @@ indentation settings (tab-width).
 		(setq indent-tabs-mode 1)
 		(setq-default tab-width 3)
 	#+end_src
-*** Initialize lsp, Eglot
-	 Only initialize. Each language gets an org heading. File extension
-	 handling (hooks) and other language-specific settings will be
-	 handled in the language's specific header below.
-	 
+*** Initialize lsp, Eglot Only initialize.
+	 Each language gets an org heading. File extension
+	 handling (hooks) and other language-specific
+	 settings will be handled in the language's specific
+	 header below.
+
 	 #+begin_src emacs-lisp
-	 (use-package eglot
-	 :ensure t)
+		  (use-package eglot :ensure t)
 	 #+end_src
 
 *** Evil mode
@@ -242,6 +242,19 @@ plugins to make emacs do text editing as good as vi.
 	 #+begin_src emacs-lisp
 	 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 	 #+end_src
+*** Put pipes on tabs to differentiate it from spaces
+
+This was taken from [[https://dougie.io/emacs/indentation/][this website.]]
+
+	 #+begin_src emacs-lisp 
+		  (setq whitespace-style '(face tabs tab-mark))
+		  (custom-set-faces
+		  '(whitespace-tab ((t (:foreground "#636363")))))
+		  (setq whitespace-display-mappings
+		  '((tab-mark 9 [124 9] [92 9]))) ; 124 is the ascii ID for '\|'
+		  (global-whitespace-mode) ; Enable whitespace mode everywhere
+	 #+end_src
+
 ** Version Control
 ** Web mode and file associations
 	#+begin_src emacs-lisp
@@ -310,7 +323,7 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 (add-hook 'python-mode-hook 'eglot-ensure)
 #+end_src
 
-** Org 
+** Org
 	
 	#+begin_src emacs-lisp
 	;; Allow <s shortcuts
@@ -325,14 +338,29 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 	 #+begin_src emacs-lisp
 	 (global-set-key (kbd "C-c c") #'org-capture)
 	 #+end_src
+
+	 Set capture templates, this was taken form [[https://orgmode.org/manual/Capture-templates.html][the org guide]].
+
+	 #+begin_src emacs-lisp
+	 (setq org-capture-templates
+		  '(("t" "Todo" entry (file+headline "~/Personal/todo.org" "Tasks")
+				"* TODO %?\n  %i\n  %a")
+				("j" "Journal" entry (file+datetree "~/Personal/journal.org")
+				"* %?\nEntered on %U\n  %i\n  %a")))
+
+	 #+end_src
 * Theme & Appearance
 
-** Theme
+** Theme 
 	#+begin_src emacs-lisp
 	(use-package gruber-darker-theme
 	:ensure t  :init)
 	(load-theme 'gruber-darker t)
 	#+end_src
+
+*** TODO Set fringe bg color same as background color of theme
+*** TODO Find out why emacs-lisp is colored gray inside of code blocks in org babel
+
 ** Font face 
 	#+begin_src emacs-lisp
 	;; Set font for all frames
