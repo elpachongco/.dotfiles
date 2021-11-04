@@ -207,7 +207,7 @@ I follow this rule for almost all documents except HTML.
 		(column-number-mode 1)
 		(setq-default fill-column 80)
 		;; Enable automatically on prog mode
-		(add-hook 'prog-mode-hook (display-fill-column-indicator-mode 80)) 
+		(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode) 
 		;;(global-display-fill-column-indicator-mode 80)
 		;;(display-fill-column-indicator-mode 80)
 	#+end_src
@@ -287,39 +287,39 @@ This was taken from [[https://dougie.io/emacs/indentation/][this website.]]
 	 #+end_src
 
 *** Tide mode
-	 #+begin_src emacs-lisp
-	 (use-package tide
-  :ensure t)
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  (company-mode +1))
-
-;; aligns annotation to the right hand side
-(setq company-tooltip-align-annotations t)
-;; formats the buffer before saving
-(add-hook 'before-save-hook 'tide-format-before-save)
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
-
-	 #+end_src
+;;	 #+begin_src emacs-lisp
+;;	 (use-package tide
+;;  :ensure t)
+;;(defun setup-tide-mode ()
+;;  (interactive)
+;;  (tide-setup)
+;;  (flycheck-mode +1)
+;;  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+;;  (eldoc-mode +1)
+;;  (tide-hl-identifier-mode +1)
+;;  (company-mode +1))
+;;
+;;;; aligns annotation to the right hand side
+;;(setq company-tooltip-align-annotations t)
+;;;; formats the buffer before saving
+;;(add-hook 'before-save-hook 'tide-format-before-save)
+;;(add-hook 'typescript-mode-hook 'setup-tide-mode)
+;;;;(add-hook 'typescript-mode-hook #'setup-tide-mode)
+;; #+end_src
 
 *** Typescript React - *.tsx hook
-	 #+begin_src emacs-lisp
-	 ;; For editing TSX files
-	 (require 'web-mode)
-	 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-	 (add-hook 'web-mode-hook
-	    (lambda ()
-       (when (string-equal "tsx" (file-name-extension buffer-file-name))
-       (setup-tide-mode))))
-		 ;; enable typescript-tslint checker
-		 (flycheck-add-mode 'typescript-tslint 'web-mode)
-
-	 #+end_src
+;;	 #+begin_src emacs-lisp
+;;	 ;; For editing TSX files
+;;	 (require 'web-mode)
+;;	 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+;;	 (add-hook 'web-mode-hook
+;;	    (lambda ()
+;;       (when (string-equal "tsx" (file-name-extension buffer-file-name))
+;;       (setup-tide-mode))))
+;;		 ;; enable typescript-tslint checker
+;;		 (flycheck-add-mode 'typescript-tslint 'web-mode)
+;;
+;;	 #+end_src
 
 ** Python
 Make sure `pylint`, and `python-lsp-server` are installed.
@@ -327,6 +327,11 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 (add-hook 'python-mode-hook 'eglot-ensure)
 #+end_src
 
+** Go 
+	#+begin_src emacs-lisp
+	 (use-package go-mode
+	 :ensure t) 
+	#+end_src
 ** Org
 	
 	#+begin_src emacs-lisp
@@ -354,7 +359,6 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 
 	 #+end_src
 * Theme & Appearance
-
 ** Theme 
 	#+begin_src emacs-lisp
 	(use-package gruber-darker-theme
@@ -364,11 +368,12 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 
 *** TODO Set fringe bg color same as background color of theme
 *** TODO Find out why emacs-lisp is colored gray inside of code blocks in org babel
-
 ** Font face 
 	#+begin_src emacs-lisp
 	;; Set font for all frames
 	(set-frame-font "IBM Plex Mono-11:hinting=true:hintstyle=hintfull\
 	:autohint=false:antialias=true" :frames t)
 	#+end_src
+	
+	Also looking at the font `founders grotesk mono` for small letters
 
