@@ -1,6 +1,5 @@
 #+TITLE: My Emacs config
 #+Author: elpachongco
-
 * Introduction
 My goal with emacs is to create a productivity environment. Mainly, I'd
 like it to do basic ide functions. Some other functions that I can't live
@@ -13,14 +12,14 @@ Here are the dependencies that most likely will not be installed automatically.
 server`.
 - eslint
 - pylint
-* Core Setup
+* Pre-config
 ** Package manager - use-package.el
 Use use-package and add melpa as a repository
 #+BEGIN_SRC emacs-lisp
 	;;(require 'package)
 	(setq package-enable-at-startup nil)
 	(add-to-list 'package-archives
-		'("melpa" . "https://melpa.org/packages/"))
+		'("melpa" . "https://melpa.org/packages/") t)
 	;;(package-initialize) < already called
 	(unless (package-installed-p 'use-package)
 		(package-refresh-contents)
@@ -35,53 +34,19 @@ Use use-package and add melpa as a repository
 		(use-package try :ensure t)
 	#+END_SRC
 	
-* Better Defaults
+* Navigation
 
-Here is where I override emacs defaults to suit my needs.
-
-** Disable tool, scroll, menu bars, and startup-message
-#+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-message t)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-#+END_SRC 
-
-** Change startup buffer to ~/Personal/todo.org
-
-	#+begin_src emacs-lisp
-	(setq initial-buffer-choice "~/Personal/todo.org")
-	#+end_src
-
-** Set a different directory for backups and autosaves
-
-	#+begin_src emacs-lisp
-		(setq backup-directory-alist
-	`((".*" . ,"~/.backups-emacs/")))
-	(setq auto-save-file-name-transforms
-	`((".*" ,"~/.backups-emacs/" t)))
-	#+end_src
-
-** ido-mode, icomplete, ibuffer
-	#+begin_src emacs-lisp
-	(setq ido-enable-flex-matching t)
-	(setq ido-everywhere 1)
-	(ido-mode 1)
-	(icomplete-mode 1) 
-	(defalias 'list-buffers 'ibuffer) ; Make ibuffer default
-	#+end_src
-	
 ** Better C-x o - ace-window.el o-
 	#+begin_src emacs-lisp
-	;; Show numbers when doing C-x o
-	(use-package ace-window
-  :ensure t
-  :init
-    (global-set-key [remap other-window] 'ace-window)
-    (custom-set-faces
-     '(aw-leading-char-face
-       ((t (:inherit ace-jump-face-foreground :height 3.0)))))
-    )
+		;; Show numbers when doing C-x o
+	  ;;  (use-package ace-window
+	  ;; :ensure t
+	  ;; :init
+	  ;;   (global-set-key [remap other-window] 'ace-window)
+	  ;;   (custom-set-faces
+	  ;;    '(aw-leading-char-face
+	  ;;      ((t (:inherit ace-jump-face-foreground :height 3.0)))))
+	  ;;   )
 
 	#+end_src
 
@@ -92,10 +57,62 @@ Here is where I override emacs defaults to suit my needs.
 	(global-set-key (kbd "M-p") (kbd "C-u 1 M-v"))
 	#+end_src
 
+* Performance
+Most of these I got from the emacs-lsp performance
+page.
+** Turn up Emacs Garbage collector  
+The garbage collector cons threshold is set by default on my machine 
+to 800kb, try to turn this value up since I have enough memory for it 
+on my server.
+
+#+begin_src emacs-lisp
+(setq gc-cons-threshold 100000000)
+#+end_src
+
+Also helpful for making emacs startup fast.
+
+** Set Amount of data emacs reads from processes
+Default is 4096 bytes.
+#+begin_src emacs-lisp
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+#+end_src
+
+* Quality of life Improvements
+** ido-mode, icomplete, ibuffer
+	#+begin_src emacs-lisp
+	(setq ido-enable-flex-matching t)
+	(setq ido-everywhere 1)
+	(ido-mode 1)
+	(icomplete-mode 1) 
+	(defalias 'list-buffers 'ibuffer) ; Make ibuffer default
+	#+end_src
+	
+** Change startup buffer to ~/Personal/todo.org
+
+	#+begin_src emacs-lisp
+	(setq initial-buffer-choice "~/Personal/todo.org")
+	#+end_src
+
+** Auto update buffers when file updates
+	#+begin_src emacs-lisp
+	(global-auto-revert-mode t)
+	#+end_src
+
+** Disable dialog boxes
+	#+begin_src emacs-lisp
+	(setq use-dialog-box nil) 
+	#+end_src
+
 ** Only use y or n instead of yes, no, y, n
 	#+begin_src emacs-lisp
 	(fset 'yes-or-no-p 'y-or-n-p)
 	#+end_src
+
+** Enable every deactivated command
+	#+begin_src emacs-lisp
+	(setq disabled-command-function nil)
+	#+end_src
+
 ** Better help - helpful.el, also remap keys for helpful
 	#+begin_src emacs-lisp
 	(use-package helpful
@@ -128,65 +145,46 @@ Here is where I override emacs defaults to suit my needs.
 
 	#+end_src
 
-** Enable every deactivated command
-	#+begin_src emacs-lisp
-	(setq disabled-command-function nil)
-	#+end_src
-
-** TODO Automatically choose indentation between spaces or tabs based on the file
 ** Allow restoration of window layouts
 	#+begin_src emacs-lisp
 	(winner-mode 1)
 	#+end_src
-** Disable cursor blinking
+
+** Set a different directory for backups and autosaves
+
 	#+begin_src emacs-lisp
-	(blink-cursor-mode 0)
-	#+end_src
-** Change cursor (pointer) type from bar
-	#+begin_src 
-	(customize-set-variable 'cursor-type 'box)	
-	#+end_src
-** Higlight line where cursor is at
-	#+begin_src emacs-lisp
-	(global-hl-line-mode 1)
+		(setq backup-directory-alist
+	`((".*" . ,"~/.backups-emacs/")))
+	(setq auto-save-file-name-transforms
+	`((".*" ,"~/.backups-emacs/" t)))
 	#+end_src
 
-** Remove line number, retain column number in minibuffer
-	#+begin_src emacs-lisp
-	(line-number-mode -1)
-	(column-number-mode 1)
-	#+end_src
-** Disable dialog boxes
-	#+begin_src emacs-lisp
-	(setq use-dialog-box nil) 
-	#+end_src
-** Auto update buffers when file updates
-	#+begin_src emacs-lisp
-	(global-auto-revert-mode t)
-	#+end_src
+** TODO Automatically choose indentation between spaces or tabs based on the file
+
 * Programming & Development
 ** General Settings
 *** Parens-related settings
 	 #+begin_src emacs-lisp
-	 ;; Smartparens
-	 (use-package smartparens
-	 :ensure t
-	 :init)
-	 (smartparens-global-mode 1)
-	 ;;(show-smartparens-global-mode 1)
-	 ;; ^ This is now replaced by highlight-parentheses mode
+			 ;; Smartparens
+			 (use-package smartparens
+			 :ensure t
+			 :init)
+			 (smartparens-global-mode 1)
+			 ;;(show-smartparens-global-mode 1)
+			 ;; ^ This is now replaced by highlight-parentheses mode
 	 
-	 ;; Highlight parens
-(use-package highlight-parentheses
-  :ensure t :init)
+			 ;; Highlight parens
+			 (show-paren-mode -1)
+		(use-package highlight-parentheses
+		  :ensure t :init)
 
-;; turn it on when in prog-mode
-;;(add-hook 'prog-mode-hook #'highlight-parentheses-mode)
+		;; turn it on when in prog-mode
+		;;(add-hook 'prog-mode-hook #'highlight-parentheses-mode)
 
-;; Enable for minibuffer
-(add-hook 'minibuffer-setup-hook #'highlight-parentheses-minibuffer-setup)
-;; Enable global mode
-(global-highlight-parentheses-mode 1)
+		;; Enable for minibuffer
+		(add-hook 'minibuffer-setup-hook #'highlight-parentheses-minibuffer-setup)
+		;; Enable global mode
+		(global-highlight-parentheses-mode 1)
 	 #+end_src
 *** Prettify symbols
 	 #+begin_src emacs-lisp
@@ -195,10 +193,14 @@ Here is where I override emacs defaults to suit my needs.
 
 *** Autocompletion
 	 #+begin_src emacs-lisp
-	 (use-package company
-	 :ensure t
-	 :init)
-	 (add-hook 'after-init-hook 'global-company-mode)
+		(use-package company
+		:ensure t
+		:init)
+		;; Set delay for completion to low
+		(setq company-tooltip-idle-delay 0.1)
+		(setq company-idle-delay 0.08)
+		(add-hook 'after-init-hook 'global-company-mode)
+
 	 #+end_src
 
 *** Add a column rule of 80
@@ -225,7 +227,43 @@ indentation settings (tab-width).
 	 header below.
 
 	 #+begin_src emacs-lisp
-		  (use-package eglot :ensure t)
+		  ;(use-package eglot :ensure t)
+	 #+end_src
+
+*** LSP: emacs-lsp instead of eglot
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+		:ensure t
+		:init
+		;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+		;; (setq lsp-keymap-prefix "C-c l")
+		(setq lsp-keymap-prefix "M-l")
+		:hook (
+				  (go-mode . lsp)
+				  (typescript-mode . lsp)
+				  (python-mode . lsp)
+				  (web-mode . lsp))
+		:commands lsp)
+
+  (setq lsp-headerline-breadcrumb-enable nil) 
+  (use-package which-key
+		:ensure t
+		:config
+		(which-key-mode))
+
+  (with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+  (setq which-key-idle-delay 0.2)
+#+end_src
+
+*** LSPUI
+#+begin_src emacs-lisp
+	 ;; optionally
+	 (use-package lsp-ui :ensure t :commands lsp-ui-mode
+	 :config (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions) 
+	 (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+	 ) 
+	 (setq lsp-ui-doc-position "At point")
 	 #+end_src
 
 *** Evil mode
@@ -234,12 +272,17 @@ Vim keybindings are easier to use plus I don't have to add tons of other
 plugins to make emacs do text editing as good as vi.
 
 #+Begin_src emacs-lisp
-	 (use-package evil
-	 :ensure t)
-	 (evil-mode 1)
+  (use-package evil
+  :ensure t)
+  (evil-mode 1)
+  ;; This makes C-[ (escape) work when evil-mode is called
+  (setq evil-intercept-esc 'always)
 
-	 ;; This makes C-[ (escape) work when evil-mode is called
-	 (setq evil-intercept-esc 'always)
+  ;; Set tab to org cycle when in org mode, not evil tab
+	 (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle) 
+  ;; Set default state for buffers depending on major mode
+	 (evil-set-initial-state 'dired-mode 'normal)
+	 (evil-set-initial-state 'eshell-mode 'emacs)
 #+end_src
 
 *** Show line number when in prog-mode
@@ -259,6 +302,22 @@ This was taken from [[https://dougie.io/emacs/indentation/][this website.]]
 		  (global-whitespace-mode) ; Enable whitespace mode everywhere
 	 #+end_src
 
+*** Flycheck
+#+begin_src emacs-lisp
+  (use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+#+end_src
+*** Flycheck tooltips
+#+begin_src emacs-lisp
+	 (use-package flycheck-pos-tip :ensure t)
+	 (with-eval-after-load 'flycheck
+	 (flycheck-pos-tip-mode))
+
+#+end_src
+*** Don't Truncate lines  
+#+begin_src emacs-lisp
+#+end_src
 ** Version Control
 ** Web mode and file associations
 	#+begin_src emacs-lisp
@@ -281,7 +340,7 @@ This was taken from [[https://dougie.io/emacs/indentation/][this website.]]
 	 #+begin_src emacs-lisp
 	 (use-package typescript-mode
 	 :ensure t)
-	 (add-hook 'typescript-mode-hook 'eglot-ensure)
+	 ;(add-hook 'typescript-mode-hook 'eglot-ensure)
 	 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 	 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 	 #+end_src
@@ -324,13 +383,14 @@ This was taken from [[https://dougie.io/emacs/indentation/][this website.]]
 ** Python
 Make sure `pylint`, and `python-lsp-server` are installed.
 #+begin_src emacs-lisp
-(add-hook 'python-mode-hook 'eglot-ensure)
+;(add-hook 'python-mode-hook 'eglot-ensure)
 #+end_src
 
 ** Go 
 	#+begin_src emacs-lisp
 	 (use-package go-mode
 	 :ensure t) 
+	 ;(add-hook 'go-mode-hook 'eglot-ensure)
 	#+end_src
 ** Org
 	
@@ -358,22 +418,119 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 				"* %?\nEntered on %U\n  %i\n  %a")))
 
 	 #+end_src
-* Theme & Appearance
+	 
+* Visual Customizations
+** Higlight line where cursor is at
+	#+begin_src emacs-lisp
+	(global-hl-line-mode 1)
+	#+end_src
+
+** Change cursor (pointer) type from bar
+	#+begin_src 
+	(customize-set-variable 'cursor-type 'box)	
+	#+end_src
+** Disable cursor blinking
+	#+begin_src emacs-lisp
+	  ;;(blink-cursor-mode 0)
+	  (setq blink-cursor-blinks 0)
+	#+end_src
+** Disable tool, scroll, menu bars, and startup-message
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+#+END_SRC 
+
 ** Theme 
 	#+begin_src emacs-lisp
-	(use-package gruber-darker-theme
-	:ensure t  :init)
-	(load-theme 'gruber-darker t)
+	  ;; DARK
+	  (use-package gruber-darker-theme
+	  :ensure t )
+	  (load-theme 'gruber-darker t)
+
+	  ;; LIGHT
+	  ;;(use-package )
 	#+end_src
 
 *** TODO Set fringe bg color same as background color of theme
 *** TODO Find out why emacs-lisp is colored gray inside of code blocks in org babel
 ** Font face 
 	#+begin_src emacs-lisp
-	;; Set font for all frames
-	(set-frame-font "IBM Plex Mono-11:hinting=true:hintstyle=hintfull\
-	:autohint=false:antialias=true" :frames t)
+	  ;; Set font for all frames
+	  (set-frame-font "IBM Plex Mono:pixelsize=13:slant=normal:width=normal:hinting=true:hintstyle=hintfull\
+	  :scalable=true:autohint=false:antialias=true" :frames t)
 	#+end_src
 	
 	Also looking at the font `founders grotesk mono` for small letters
 
+* Minibuffer
+** Remove line number, retain column number in minibuffer
+	#+begin_src emacs-lisp
+	(line-number-mode -1)
+	(column-number-mode 1)
+	#+end_src
+
+** NNNnnyan
+#+begin_src emacs-lisp
+  (use-package nyan-mode
+  :ensure t)
+  (setq nyan-animate-nyancat t)
+  (setq nyan-wavy-trail t)
+  (setq nyan-bar-length 17)
+  (setq nyan-animation-frame-interval 0.05)
+  (nyan-mode 1)
+
+#+end_src
+
+* ERC
+#+begin_src emacs-lisp
+  ;; Notify when /notice to me
+  (setq erc-echo-notices-in-minibuffer-flag t)
+#+end_src
+
+* Other
+** Epub reading
+#+begin_src emacs-lisp
+	 (use-package nov :ensure t)
+	 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+	 ;; Setup font for epubs
+	 (defun my-nov-font-setup ()
+	 (face-remap-add-relative 'variable-pitch :family "Liberation Serif"
+																:height 1.0))
+	 (add-hook 'nov-mode-hook 'my-nov-font-setup)
+
+	 ;; Set text width
+	 (setq nov-text-width 60)
+
+#+end_src
+
+* Annotate.el
+#+begin_src emacs-lisp
+  ;; Allows annotation
+  (use-package annotate :ensure t)
+  (setq annotate-file "~/.backups-emacs/annotations")
+
+  ;; C-c C-a to annotate or edit existing region
+  ;; C-c ] jump to next or ] to previous
+#+end_src
+
+* Snippets
+#+begin_src emacs-lisp
+  (use-package yasnippet :ensure t)
+  (use-package yasnippet-snippets :ensure t)
+  (yas-global-mode)
+
+#+end_src
+
+
+* TODO Toggle truncate lines on prog mode
+* TODO add breadcrumbs in the minibuffer for current file.
+* TODO Put colors to the sides. as representation of open buffers.
+	- then upon hover or C-x- C-b, ibuffer will show as a side bar.
+	  Just like microsoft edge side bar tabs
+
+* TODO snippets
+* TODO Set different font for non-prog-mode buffers
+* DONE Evil set different states for different modes (eshell, novel)
