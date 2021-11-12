@@ -183,3 +183,6 @@ bindsym $mod+semicolon exec emoji-picker
 
 # Set key speed xset r rate delay amountpersecond
 exec_always xset r rate 280 40
+
+# Start syncthing on i3 startup
+exec_always syncthing
