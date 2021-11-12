@@ -3,6 +3,13 @@
 .emacs.d/elpa/**
 .emacs.d/eshell/**
 .emacs.d/*~
+.emacs.d/nov-places
 .emacs.d/tramp
 .emacs.d/tutorial/**
+.emacs.d/.lsp-session-v1
+.emacs.d/tutorial/**
+.emacs.d/eln-cache/**
+.emacs.d/games/**
+.emacs.d/url/**
+
 .config/nvim/.netrwhist
