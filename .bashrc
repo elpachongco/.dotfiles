@@ -120,3 +120,4 @@ alias todo="vim ~/Desktop/todo"
 
 # Set env var for go bins
 export PATH=$(go env GOPATH)/bin/:$PATH
+. "$HOME/.cargo/env"
