@@ -524,6 +524,12 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 
 #+end_src
 
+* Centered-cursor.el
+#+begin_src emacs-lisp
+(use-package centered-cursor-mode
+	 :ensure t)
+
+#+end_src
 
 * TODO Toggle truncate lines on prog mode
 * TODO add breadcrumbs in the minibuffer for current file.
