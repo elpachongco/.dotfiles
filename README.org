@@ -1,22 +1,4 @@
 # .dotfiles
 
-All my dotfiles in one place
-
-* Copying
-To use, clone the repository and use symlinks for each file.
-The default destination location is ~/ or $HOME.
-
-$ `ln -sf .your-config-file ~/.your-config-file`
-
-Some files may be placed under directories such as ~/.config these kinds of
-
-files that must be placed under a destination directory are also placed here
-inside the same directory. 
-
-e.g. $ `ln -sf .config/nvim/ ~/.config/nvim/`
-
-
-* Resources
-
-[[https://depp.brause.cc/dotemacs/#orgef6e599][Literate Emacs configuration]]
-[[https://pages.sachachua.com/.emacs.d/Sacha.html][Sacha's config]]
+The lightweight branch is for configurations that can be 
+used by lighter devices. 
