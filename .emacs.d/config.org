@@ -518,9 +518,9 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 
 * Snippets
 #+begin_src emacs-lisp
-  (use-package yasnippet :ensure t)
-  (use-package yasnippet-snippets :ensure t)
-  (yas-global-mode)
+  ;; (use-package yasnippet :ensure t)
+  ;; (use-package yasnippet-snippets :ensure t)
+  ;; (yas-global-mode)
 
 #+end_src
 
