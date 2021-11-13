@@ -304,15 +304,15 @@ This was taken from [[https://dougie.io/emacs/indentation/][this website.]]
 
 *** Flycheck
 #+begin_src emacs-lisp
-  (use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
+  ;; (use-package flycheck
+  ;; :ensure t
+  ;; :init (global-flycheck-mode))
 #+end_src
 *** Flycheck tooltips
 #+begin_src emacs-lisp
-	 (use-package flycheck-pos-tip :ensure t)
-	 (with-eval-after-load 'flycheck
-	 (flycheck-pos-tip-mode))
+  ;; (use-package flycheck-pos-tip :ensure t)
+  ;; (with-eval-after-load 'flycheck
+  ;; (flycheck-pos-tip-mode))
 
 #+end_src
 *** Don't Truncate lines  
