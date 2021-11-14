@@ -34,7 +34,7 @@ font pango:DejaVu Sans Mono 7.5
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -186,3 +186,6 @@ exec_always xset r rate 280 40
 
 # Start syncthing on i3 startup
 exec_always syncthing
+
+# Override terminal default
+bindsym $mod+Return exec urxvt
