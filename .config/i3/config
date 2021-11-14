@@ -189,3 +189,6 @@ exec_always syncthing
 
 # Override terminal default
 bindsym $mod+Return exec urxvt
+
+# Set desktop color
+exec --no-startup-id xsetroot -solid "#002b36"
