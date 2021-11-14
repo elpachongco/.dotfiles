@@ -186,3 +186,12 @@ exec_always xset r rate 280 40
 
 # Start syncthing on i3 startup
 exec_always syncthing
+
+# Override terminal default
+bindsym $mod+Return exec urxvt
+
+# Set desktop color
+exec --no-startup-id xsetroot -solid "#002b36"
+
+# Set urxvt daemon to run on start
+exec --no-startup-id urxvtd
