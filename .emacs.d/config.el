@@ -23,9 +23,9 @@
 (global-set-key (kbd "M-n") (kbd "C-u 1 C-v"))
 (global-set-key (kbd "M-p") (kbd "C-u 1 M-v"))
 
-(setq gc-cons-threshold 100000000)
+;(setq gc-cons-threshold 100000000)
 
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
+;(setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere 1)
@@ -121,35 +121,35 @@
 
 ;(use-package eglot :ensure t)
 
-(use-package lsp-mode
-	      :ensure t
-	      :init
-	      ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-	      ;; (setq lsp-keymap-prefix "C-c l")
-	      (setq lsp-keymap-prefix "M-l")
-	      :hook (
-				(go-mode . lsp)
-				(typescript-mode . lsp)
-				(python-mode . lsp)
-				(web-mode . lsp))
-	      :commands lsp)
+;; (use-package lsp-mode
+;; 	 :ensure t
+;; 	 :init
+;; 	 ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+;; 	 ;; (setq lsp-keymap-prefix "C-c l")
+;; 	 (setq lsp-keymap-prefix "M-l")
+;; 	 :hook (
+;; 				(go-mode . lsp)
+;; 				(typescript-mode . lsp)
+;; 				(python-mode . lsp)
+;; 				(web-mode . lsp))
+;; 	 :commands lsp)
 
-(setq lsp-headerline-breadcrumb-enable nil) 
-(use-package which-key
-	      :ensure t
-	      :config
-	      (which-key-mode))
+;; (setq lsp-headerline-breadcrumb-enable nil) 
+;; (use-package which-key
+;; 	 :ensure t
+;; 	 :config
+;; 	 (which-key-mode))
 
-(with-eval-after-load 'lsp-mode
-(add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
-(setq which-key-idle-delay 0.2)
+;; (with-eval-after-load 'lsp-mode
+;; (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+;; (setq which-key-idle-delay 0.2)
 
 ;; optionally
-(use-package lsp-ui :ensure t :commands lsp-ui-mode
-:config (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions) 
-(define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
-) 
-(setq lsp-ui-doc-position "At point")
+;; (use-package lsp-ui :ensure t :commands lsp-ui-mode
+;; :config (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions) 
+;; (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+;; ) 
+;; (setq lsp-ui-doc-position "At point")
 
 (use-package evil
 :ensure t)
@@ -172,13 +172,13 @@
 '((tab-mark 9 [124 9] [92 9]))) ; 124 is the ascii ID for '\|'
 (global-whitespace-mode) ; Enable whitespace mode everywhere
 
-(use-package flycheck
-:ensure t
-:init (global-flycheck-mode))
+;; (use-package flycheck
+;; :ensure t
+;; :init (global-flycheck-mode))
 
-(use-package flycheck-pos-tip :ensure t)
-(with-eval-after-load 'flycheck
-(flycheck-pos-tip-mode))
+;; (use-package flycheck-pos-tip :ensure t)
+;; (with-eval-after-load 'flycheck
+;; (flycheck-pos-tip-mode))
 
 
 
@@ -252,7 +252,7 @@
 (setq nyan-animate-nyancat t)
 (setq nyan-wavy-trail t)
 (setq nyan-bar-length 17)
-(setq nyan-animation-frame-interval 0.05)
+(setq nyan-animation-frame-interval 0.2)
 (nyan-mode 1)
 
 ;; Notify when /notice to me
@@ -277,6 +277,6 @@
 ;; C-c C-a to annotate or edit existing region
 ;; C-c ] jump to next or ] to previous
 
-(use-package yasnippet :ensure t)
-(use-package yasnippet-snippets :ensure t)
-(yas-global-mode)
+;; (use-package yasnippet :ensure t)
+;; (use-package yasnippet-snippets :ensure t)
+;; (yas-global-mode)
