@@ -119,8 +119,8 @@ alias idea="vim ~/Desktop/ideas"
 alias todo="vim ~/Desktop/todo"
 
 # Set env var for go bins
-export PATH=$(go env GOPATH)/bin/:$PATH
-. "$HOME/.cargo/env"
+#export PATH=$(go env GOPATH)/bin/:$PATH
+#. "$HOME/.cargo/env"
 
 # Set emacsclient alias for gui and terminal version
 alias emt="emacsclient -nw"
