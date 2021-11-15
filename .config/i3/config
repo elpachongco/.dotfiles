@@ -198,3 +198,6 @@ bindsym $mod+Return exec urxvtc
 
 # Set emacs daemon to start  
 exec_always emacs --daemon
+
+# Remove Title bar
+new_window 1pixel
