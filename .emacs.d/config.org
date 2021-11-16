@@ -284,6 +284,7 @@ plugins to make emacs do text editing as good as vi.
   ;; Set default state for buffers depending on major mode
 	 (evil-set-initial-state 'dired-mode 'normal)
 	 (evil-set-initial-state 'eshell-mode 'emacs)
+	 (evil-set-initial-state 'shell-mode 'emacs)
 
   ;; Set evil to change cursor when in terminal mode 
 	(use-package evil-terminal-cursor-changer

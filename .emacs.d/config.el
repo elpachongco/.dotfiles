@@ -158,6 +158,7 @@
 (setq evil-intercept-esc 'always)
 
 ;; Set tab to org cycle when in org mode, not evil tab
+       (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle) 
        (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle) 
 ;; Set default state for buffers depending on major mode
        (evil-set-initial-state 'dired-mode 'normal)
