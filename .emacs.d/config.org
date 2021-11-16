@@ -279,12 +279,15 @@ plugins to make emacs do text editing as good as vi.
   (setq evil-intercept-esc 'always)
 
   ;; Set tab to org cycle when in org mode, not evil tab
+	 (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle) 
 	 (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle) 
   ;; Set default state for buffers depending on major mode
 	 (evil-set-initial-state 'dired-mode 'normal)
 	 (evil-set-initial-state 'eshell-mode 'emacs)
 
   ;; Set evil to change cursor when in terminal mode 
+	(use-package evil-terminal-cursor-changer
+	:ensure t)
   (unless (display-graphic-p)
 			 (require 'evil-terminal-cursor-changer)
 			 (evil-terminal-cursor-changer-activate) ; or (etcc-on)

@@ -163,6 +163,14 @@
        (evil-set-initial-state 'dired-mode 'normal)
        (evil-set-initial-state 'eshell-mode 'emacs)
 
+;; Set evil to change cursor when in terminal mode 
+      (use-package evil-terminal-cursor-changer
+      :ensure t)
+(unless (display-graphic-p)
+		       (require 'evil-terminal-cursor-changer)
+		       (evil-terminal-cursor-changer-activate) ; or (etcc-on)
+		       )
+
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 (setq whitespace-style '(face tabs tab-mark))
