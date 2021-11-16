@@ -163,6 +163,7 @@
 ;; Set default state for buffers depending on major mode
        (evil-set-initial-state 'dired-mode 'normal)
        (evil-set-initial-state 'eshell-mode 'emacs)
+       (evil-set-initial-state 'shell-mode 'emacs)
 
 ;; Set evil to change cursor when in terminal mode 
       (use-package evil-terminal-cursor-changer
@@ -189,7 +190,7 @@
 (with-eval-after-load 'flycheck
 (flycheck-pos-tip-mode))
 
-
+(add-hook 'prog-mode-hook 'toggle-truncate-lines)
 
 (use-package web-mode
       :ensure t)
@@ -257,12 +258,16 @@
 (column-number-mode 1)
 
 (use-package nyan-mode
-:ensure t)
+       :ensure t)
+
 (setq nyan-animate-nyancat t)
 (setq nyan-wavy-trail t)
 (setq nyan-bar-length 17)
 (setq nyan-animation-frame-interval 0.05)
-(nyan-mode 1)
+
+       (if (display-graphic-p)
+		(nyan-mode 1)
+			      )
 
 ;; Notify when /notice to me
 (setq erc-echo-notices-in-minibuffer-flag t)

@@ -487,16 +487,17 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 ** NNNnnyan
 #+begin_src emacs-lisp
 
-  (use-package nyan-mode
-  :ensure t)
+	(use-package nyan-mode
+	:ensure t)
 
-  (unless (display-graphic-p)
-		(setq nyan-animate-nyancat t)
-		(setq nyan-wavy-trail t)
-		(setq nyan-bar-length 17)
-		(setq nyan-animation-frame-interval 0.05)
-		(nyan-mode 1)
-			 )
+  (setq nyan-animate-nyancat t)
+  (setq nyan-wavy-trail t)
+  (setq nyan-bar-length 17)
+  (setq nyan-animation-frame-interval 0.05)
+
+  (if (display-graphic-p)
+       (nyan-mode 1)
+	    )
 
 #+end_src
 
