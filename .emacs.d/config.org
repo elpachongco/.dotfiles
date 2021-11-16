@@ -328,8 +328,9 @@ This was taken from [[https://dougie.io/emacs/indentation/][this website.]]
 
 #+end_src
 *** Don't Truncate lines  
-#+begin_src emacs-lisp
-#+end_src
+	#+begin_src emacs-lisp
+	  (add-hook 'prog-mode-hook 'toggle-truncate-lines) 
+	#+end_src
 ** Version Control
 ** Web mode and file associations
 	#+begin_src emacs-lisp
@@ -547,7 +548,7 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 
 #+end_src
 
-* TODO Toggle truncate lines on prog mode
+* DONE Toggle truncate lines on prog mode
 * TODO add breadcrumbs in the minibuffer for current file.
 * TODO Put colors to the sides. as representation of open buffers.
 	- then upon hover or C-x- C-b, ibuffer will show as a side bar.
