@@ -128,3 +128,6 @@ alias emg="emacsclient -c"
 
 # Set alias for emacs daemon
 alias emd="emacs --daemon"
+
+# Enable 256 color support for terminal
+export TERM=xterm-256color
