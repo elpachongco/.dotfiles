@@ -161,6 +161,17 @@ Default is 4096 bytes.
 
 ** TODO Automatically choose indentation between spaces or tabs based on the file
 
+** Fix Comment DWIM 
+#+begin_src emacs-lisp
+(defun my-comment-dwim ()
+  (interactive)
+  (if (use-region-p)
+      (comment-or-uncomment-region (region-beginning) (region-end))
+    (comment-or-uncomment-region (line-beginning-position)
+                                 (line-end-position))))
+
+(global-set-key (kbd "M-;") 'my-comment-dwim)
+#+end_src
 * Programming & Development
 ** General Settings
 *** Parens-related settings
