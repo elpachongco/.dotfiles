@@ -549,6 +549,13 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 
 #+end_src
 
+* Spell checking
+M-tab to cycle through corrections
+#+begin_src emacs-lisp
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(setq ispell-dictionary "british")
+#+end_src
 * DONE Toggle truncate lines on prog mode
 * TODO add breadcrumbs in the minibuffer for current file.
 * TODO Put colors to the sides. as representation of open buffers.
