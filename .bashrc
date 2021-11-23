@@ -128,3 +128,8 @@ alias emg="emacsclient -c"
 
 # Set alias for emacs daemon
 alias emd="emacs --daemon"
+
+# Set env var for terminal (urxvt)
+export TERM=xterm-256color
+
+
