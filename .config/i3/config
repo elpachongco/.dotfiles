@@ -178,7 +178,7 @@ bar {
 }
 
 # Disable the laptop keyboard on i3 startup
-exec_always xinput disable "SIPODEV USB Composite Device"
+# exec_always xinput disable "SIPODEV USB Composite Device"
 bindsym $mod+semicolon exec emoji-picker
 
 # Set key speed xset r rate delay amountpersecond
