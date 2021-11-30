@@ -201,3 +201,6 @@ exec_always emacs --daemon
 
 # Remove Title bar
 new_window 1pixel
+
+# set remaps
+exec xmodmap /home/qwerty/.xmodmaprc
