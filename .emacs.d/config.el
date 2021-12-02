@@ -23,9 +23,13 @@
 (global-set-key (kbd "M-n") (kbd "C-u 1 C-v"))
 (global-set-key (kbd "M-p") (kbd "C-u 1 M-v"))
 
-(setq gc-cons-threshold 100000000)
+;; (setq gc-cons-threshold 100000000)
 
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
+
+(setq jit-lock-stealth-time 1)
+(setq jit-lock-chunck-size 500)
+(setq jit-lock-defer-time 0.5)
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere 1)
@@ -77,6 +81,15 @@
 `((".*" . ,"~/.backups-emacs/")))
 (setq auto-save-file-name-transforms
 `((".*" ,"~/.backups-emacs/" t)))
+
+(defun my-comment-dwim ()
+  (interactive)
+  (if (use-region-p)
+      (comment-or-uncomment-region (region-beginning) (region-end))
+    (comment-or-uncomment-region (line-beginning-position)
+                                 (line-end-position))))
+
+(global-set-key (kbd "M-;") 'my-comment-dwim)
 
 ;; Smartparens
 	 (use-package smartparens
