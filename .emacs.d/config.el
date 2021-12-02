@@ -311,6 +311,6 @@
 (use-package centered-cursor-mode
 	 :ensure t)
 
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-(setq ispell-dictionary "british")
+;; (add-hook 'text-mode-hook 'flyspell-mode)
+;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+;; (setq ispell-dictionary "british")
