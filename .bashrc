@@ -131,3 +131,8 @@ alias emd="emacs --daemon"
 
 # Enable 256 color support for terminal
 export TERM=xterm-256color
+
+# Set nvm 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
