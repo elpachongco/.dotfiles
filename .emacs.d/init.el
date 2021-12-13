@@ -22,7 +22,8 @@
  '(org-agenda-files
 	'("~/hdd1/Programming/Projects/Chezemacs/README.org" "/home/norm/.dotfiles/.emacs.d/config.org" "/home/norm/Personal/cv.org" "/home/norm/Personal/todo.org"))
  '(package-selected-packages
-	'(centered-cursor-mode https://raw\.githubusercontent\.com/andre-r/centered-cursor-mode\.el/master/centered-cursor-mode\.el solarized-theme yasnippet-snippets yasnippet which-key lsp-mode flycheck-pos-tip flycheck annotate nov nyan-mode go-mode evil web-mode use-package try tide smartparens highlight-parentheses helpful gruvbox-theme gruber-darker-theme eglot company ace-window)))
+	'(centered-cursor-mode https://raw\.githubusercontent\.com/andre-r/centered-cursor-mode\.el/master/centered-cursor-mode\.el solarized-theme yasnippet-snippets yasnippet which-key lsp-mode flycheck-pos-tip flycheck annotate nov nyan-mode go-mode evil web-mode use-package try tide smartparens highlight-parentheses helpful gruvbox-theme gruber-darker-theme eglot company ace-window))
+ '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

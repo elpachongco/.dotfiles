@@ -25,11 +25,11 @@
 
 ;; (setq gc-cons-threshold 100000000)
 
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
+;; (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
-(setq jit-lock-stealth-time 1)
-(setq jit-lock-chunck-size 500)
-(setq jit-lock-defer-time 0.5)
+;; (setq jit-lock-stealth-time 1)
+;; (setq jit-lock-chunck-size 500)
+;; (setq jit-lock-defer-time 0.5)
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere 1)
