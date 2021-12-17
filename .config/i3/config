@@ -197,7 +197,7 @@ exec --no-startup-id xsetroot -solid "#002b36"
 #bindsym $mod+Return exec urxvtc
 
 # Set emacs daemon to start  
-#exec_always emacs --daemon
+exec_always emacs --daemon
 
 # Remove Title bar
 new_window 1pixel
