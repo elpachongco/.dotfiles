@@ -124,9 +124,6 @@ export PATH=$(go env GOPATH)/bin/:$PATH
 # Set emacsclient alias for gui and terminal version
 alias emacs="emacsclient"
 
-# Set alias for emacs daemon
-alias emd="emacs --daemon"
-
 # Set nvm 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
