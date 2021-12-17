@@ -23,9 +23,9 @@
 (global-set-key (kbd "M-n") (kbd "C-u 1 C-v"))
 (global-set-key (kbd "M-p") (kbd "C-u 1 M-v"))
 
-;; (setq gc-cons-threshold 100000000)
+(setq gc-cons-threshold 100000000)
 
-;; (setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 ;; (setq jit-lock-stealth-time 1)
 ;; (setq jit-lock-chunck-size 500)
