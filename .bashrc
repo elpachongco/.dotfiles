@@ -123,8 +123,9 @@ export PATH=$(go env GOPATH)/bin/:$PATH
 . "$HOME/.cargo/env"
 
 # Set emacsclient alias for gui and terminal version
-alias emt="emacsclient -nw"
-alias emg="emacsclient -c"
+# alias emt="emacsclient -nw"
+# alias emg="emacsclient -c"
+alias emacs="emacsclient"
 
 # Set alias for emacs daemon
 alias emd="emacs --daemon"
