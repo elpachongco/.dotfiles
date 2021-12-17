@@ -199,5 +199,8 @@ bindsym $mod+Return exec urxvtc
 # Set emacs daemon to start  
 exec_always emacs --daemon
 
+# Set emacsclient as default emacs
+exec_always alias emacs="emacsclient"
+
 # Remove Title bar
 new_window 1pixel
