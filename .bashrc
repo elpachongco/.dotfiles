@@ -122,8 +122,6 @@ alias todo="vim ~/Desktop/todo"
 export PATH=$(go env GOPATH)/bin/:$PATH
 
 # Set emacsclient alias for gui and terminal version
-# alias emt="emacsclient -nw"
-# alias emg="emacsclient -c"
 alias emacs="emacsclient"
 
 # Set alias for emacs daemon
