@@ -197,7 +197,7 @@ exec_always urxvtd
 bindsym $mod+Return exec urxvtc
 
 # Set emacs daemon to start  
-exec_always emacs --daemon
+exec_always SHELL=/bin/bash 'emacs' --daemon
 
 # Remove Title bar
 new_window 1pixel
