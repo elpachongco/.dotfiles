@@ -575,7 +575,6 @@ M-tab to cycle through corrections
   ;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
   ;; (setq ispell-dictionary "british")
 #+end_src
-* DONE Toggle truncate lines on prog mode
 * TODO add breadcrumbs in the minibuffer for current file.
 * TODO Put colors to the sides. as representation of open buffers.
 	- then upon hover or C-x- C-b, ibuffer will show as a side bar.
@@ -583,4 +582,5 @@ M-tab to cycle through corrections
 
 * TODO snippets
 * TODO Set different font for non-prog-mode buffers
+* DONE Toggle truncate lines on prog mode
 * DONE Evil set different states for different modes (eshell, novel)
