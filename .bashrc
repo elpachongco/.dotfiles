@@ -115,7 +115,6 @@ fi
 # Set env var for go bins
 export PATH=$(go env GOPATH)/bin/:$PATH
 
-export TERM=xterm-256color
 # Set nvm 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
