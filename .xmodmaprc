@@ -1,0 +1,23 @@
+! Remap backslash key to ctrl
+keycode 51 = Control_R
+add Control = Control_R
+
+! Remap tilde key to escape and v.v. 
+keysym 0x60 = Escape
+keycode 9 = grave
+
+! Remap Delete to \
+keysym Delete = 0x5c
+
+! Remap Win key to ctrl
+remove mod4 = Super_L
+add control = Super_L
+
+! Remap old ctrl to caps lock`
+remove control = Control_L
+add Lock = Control_L
+
+! Remap Caps lock key to Super
+remove Lock = Caps_Lock
+add mod4 = Caps_Lock
+keysym 0xffe5 = Super_L
