@@ -1,3 +1,7 @@
+! Put Ctrl key to the sides of the keyboard
+! Alt key to beside the Ctrl keys, 
+! Os keys, beside the Alt
+
 ! Remap backslash key to ctrl
 keycode 51 = Control_R
 add Control = Control_R
