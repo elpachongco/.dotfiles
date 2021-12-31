@@ -2,26 +2,52 @@
 ! Alt key to beside the Ctrl keys, 
 ! Os keys, beside the Alt
 
-! Remap backslash key to ctrl
-keycode 51 = Control_R
-add Control = Control_R
+!! Thinkpad ==
+!! Ideal Layout: 
+!! Bottom Row
+!! FN, Super, Alt, CTRL, Space_bar, CTRL, Alt, PrtSc
 
-! Remap tilde key to escape and v.v. 
-keysym 0x60 = Escape
-keycode 9 = grave
+! L Alt to control
+remove mod1 = Alt_L
+add control = Alt_L
 
-! Remap Delete to \
-keysym Delete = 0x5c
-
-! Remap Win key to ctrl
+! OS key to Alt
 remove mod4 = Super_L
-add control = Super_L
+add mod1 = Super_L
 
-! Remap old ctrl to caps lock`
+! Control to OS
 remove control = Control_L
-add Lock = Control_L
+add mod4 = Control_L
 
-! Remap Caps lock key to Super
-remove Lock = Caps_Lock
-add mod4 = Caps_Lock
-keysym 0xffe5 = Super_L
+! R Alt to control
+remove mod1 = Alt_R
+add control = Alt_R
+
+! PrtSc to Alt
+keycode 107 = Alt_R
+
+! R Control to PrintScr
+keycode 105 = Print
+remove control = Control_R
+
+!! Cubix ==
+! ! rcontrol 0xffe4 to printscr
+! keysym Control_R = Print
+! 
+! ! prtsc 0xff61 to alt
+! keysym Print = Alt_R
+! 
+! ! ralt 0xffea to control
+! remove mod1 = Alt_R
+! add Control = Alt_R
+! 
+! ! lalt 0xffe9 to control
+! remove mod1 = Alt_L
+! add Control = Alt_L
+! 
+! ! lwin 0xffeb to alt
+! keysym Super_L = Alt_L
+! 
+! ! lctrl 0xffe3 to super
+! remove Control = Control_L
+! keysym Control_L = Super_L
