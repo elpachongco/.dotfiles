@@ -428,8 +428,8 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 	
 	#+begin_src emacs-lisp
 	;; Allow <s shortcuts
-	(require 'org-tempo)
-	 (global-set-key (kbd "C-c l") #'org-store-link)
+;;	(require 'org-tempo)
+;;	 (global-set-key (kbd "C-c l") #'org-store-link)
 	#+end_src
 *** Agenda
 	 #+begin_src emacs-lisp

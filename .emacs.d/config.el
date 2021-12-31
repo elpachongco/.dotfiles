@@ -232,8 +232,8 @@
 ;(add-hook 'go-mode-hook 'eglot-ensure)
 
 ;; Allow <s shortcuts
-(require 'org-tempo)
- (global-set-key (kbd "C-c l") #'org-store-link)
+;;	(require 'org-tempo)
+;;	 (global-set-key (kbd "C-c l") #'org-store-link)
 
 (global-set-key (kbd "C-c a") #'org-agenda)
 
