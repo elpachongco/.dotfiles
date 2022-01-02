@@ -264,7 +264,7 @@
 ;;(use-package )
 
 ;; Set font for all frames
-(set-frame-font "IBM Plex Mono:pixelsize=13:slant=normal:width=normal:hinting=true:hintstyle=hintfull\
+(set-frame-font "IBM Plex Mono:pixelsize=16:slant=normal:width=normal:hinting=true:hintstyle=hintfull\
 :scalable=true:autohint=false:antialias=true" :frames t)
 
 (line-number-mode -1)

@@ -490,7 +490,7 @@ Make sure `pylint`, and `python-lsp-server` are installed.
 ** Font face 
 	#+begin_src emacs-lisp
 	  ;; Set font for all frames
-	  (set-frame-font "IBM Plex Mono:pixelsize=13:slant=normal:width=normal:hinting=true:hintstyle=hintfull\
+	  (set-frame-font "IBM Plex Mono:pixelsize=16:slant=normal:width=normal:hinting=true:hintstyle=hintfull\
 	  :scalable=true:autohint=false:antialias=true" :frames t)
 	#+end_src
 	
