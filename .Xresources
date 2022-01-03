@@ -2,7 +2,7 @@
 ! Cubix
 ! URxvt.font: xft:IBM Plex Mono:size=11
 ! Thinkkpad
-URxvt.font: xft:IBM Plex Mono:size=13
+URxvt.font: xft:IBM Plex Mono:size=12
 URxvt.cursorBlink: true
 URxvt.scrollBar: false
 urxvt*termName: rxvt
