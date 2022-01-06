@@ -2,35 +2,54 @@
 ! Alt key to beside the Ctrl keys, 
 ! Os keys, beside the Alt
 
-!! Thinkpad ==
+!! Thinkpad =====
 !! Ideal Layout: 
 !! Bottom Row
 !! FN, Super, Alt, CTRL, Space_bar, CTRL, Alt, PrtSc
 
-! L Alt to control
-remove mod1 = Alt_L
-add control = Alt_L
+! ! Swap Right Alt, Print, Control 
+! ! to Control, Alt, Print
 
-! OS key to Alt
-remove mod4 = Super_L
-add mod1 = Super_L
-
-! Control to OS
-remove control = Control_L
-add mod4 = Control_L
-
-! R Alt to control
+remove Control = Control_R
 remove mod1 = Alt_R
-add control = Alt_R
+keysym Control_R = Print
+keysym Alt_R = Control_R
+keysym Print = Alt_R Alt_R
+add Control = Control_R
+add mod1 = Alt_R
 
-! PrtSc to Alt
-keycode 107 = Alt_R
+! ! Swap Left Control, Super, Alt
+! ! to Super, Alt, Control
+ 
+!! remove Control = Control_L
+!! remove mod1 = Alt_L
+!! remove mod4 = Super_L
+!! keysym Control_L = Super_L
+!! keysym Alt_L = Control_L
+!! keysym Super_L = Alt_L
+!! add Control = Control_L
+!! add mod1 = Alt_L
+!! add mod4 = Super_L
 
-! R Control to PrintScr
-keycode 105 = Print
-remove control = Control_R
+! ! Swap Left Control, Super, Alt, CapsLock
+! ! to Super, Alt, Control, CapsLock
 
-!! Cubix ==
+remove Control = Control_L
+remove mod1 = Alt_L
+remove mod4 = Super_L
+remove Lock = Caps_Lock
+
+keysym Control_L = Caps_Lock
+keysym Alt_L = Control_L
+keysym Super_L = Alt_L
+keysym Caps_Lock = Super_L Super_L Super_L
+
+add Control = Control_L
+add Lock = Caps_Lock
+add mod1 = Alt_L
+add mod4 = Super_L
+
+!! Cubix =====
 ! ! rcontrol 0xffe4 to printscr
 ! keysym Control_R = Print
 ! 
