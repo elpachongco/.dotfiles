@@ -231,3 +231,5 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 ##### End media bindings
+
+exec xmodmap ~/.xmodmaprc
