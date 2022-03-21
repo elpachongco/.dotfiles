@@ -414,9 +414,11 @@ This was taken from [[https://dougie.io/emacs/indentation/][this website.]]
 
 ** Python
 Make sure `pylint`, and `python-lsp-server` are installed.
-#+begin_src emacs-lisp
-;(add-hook 'python-mode-hook 'eglot-ensure)
+#+begin_src bash
+python3.x -m pip install pylint python-lsp-server[all] python-lsp-black
 #+end_src
+
+Replace x with python version.
 
 ** Go 
 	#+begin_src emacs-lisp
