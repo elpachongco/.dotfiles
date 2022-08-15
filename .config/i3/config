@@ -200,7 +200,7 @@ bindsym $mod+Return exec urxvtc
 exec_always 'emacs' --daemon
 
 # Remove Title bar
-new_window 1pixel
+new_window pixel 2
 
 #### Set Media / Func Key bindings (Thinkpad)
 
