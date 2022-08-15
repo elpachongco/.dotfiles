@@ -36,3 +36,12 @@ urxvt*allow_bold:    true
 ! URxvt*color13: #d58888
 ! URxvt*color14: #7aa880
 ! URxvt*color15: #aeadaf
+!
+
+! Enable extension
+URxvt.perl-ext-common:  ...,font-size
+
+URxvt.keysym.C-=:     perl:font-size:increase
+URxvt.keysym.C--:   perl:font-size:decrease
+URxvt.keysym.C-S-=:   perl:font-size:incglobal
+URxvt.keysym.C-S--: perl:font-size:decglobal
