@@ -11,5 +11,6 @@
 .emacs.d/eln-cache/**
 .emacs.d/games/**
 .emacs.d/url/**
+.emacs.d/session.*
 
 .config/nvim/.netrwhist
