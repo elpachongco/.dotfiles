@@ -125,8 +125,9 @@
 (column-number-mode 1)
 (setq-default fill-column 80)
 ;; Enable automatically on prog mode
-(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode) 
-;;(global-display-fill-column-indicator-mode 80)
+;; (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode) 
+;; ;
+													      ;(global-display-fill-column-indicator-mode 80)
 ;;(display-fill-column-indicator-mode 80)
 
 (setq indent-tabs-mode 1)
@@ -162,6 +163,10 @@
 :config (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions) 
 (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
 ) 
+
+;; Enable showing ui doc when cursor
+(setq lsp-ui-doc-show-with-cursor t)
+(setq lsp-ui-doc-delay 0.6)
 (setq lsp-ui-doc-position "At point")
 
 (use-package evil
@@ -177,6 +182,7 @@
        (evil-set-initial-state 'dired-mode 'normal)
        (evil-set-initial-state 'eshell-mode 'emacs)
        (evil-set-initial-state 'shell-mode 'emacs)
+       (evil-set-initial-state 'ansi-term 'emacs)
 
 ;; Set evil to change cursor when in terminal mode 
       (use-package evil-terminal-cursor-changer
@@ -230,6 +236,26 @@
 (use-package go-mode
 :ensure t) 
 ;(add-hook 'go-mode-hook 'eglot-ensure)
+
+(setq package-selected-packages 
+	'(dart-mode lsp-mode lsp-dart lsp-treemacs flycheck company
+	       ;; Optional packages
+	       lsp-ui company hover))
+
+ (when (cl-find-if-not #'package-installed-p package-selected-packages)
+	(package-refresh-contents)
+	(mapc #'package-install package-selected-packages))
+
+ (add-hook 'dart-mode-hook 'lsp)
+
+(setq gc-cons-threshold (* 100 1024 1024)
+      read-process-output-max (* 1024 1024)
+      company-minimum-prefix-length 1
+      lsp-lens-enable t
+      lsp-signature-auto-activate nil) 
+		;; Disable the Run | debug button
+		(setq lsp-dart-main-code-lens nil)
+		(setq lsp-dart-test-code-lens nil)
 
 ;; Allow <s shortcuts
 ;;	(require 'org-tempo)
