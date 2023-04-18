@@ -1,3 +1,5 @@
+!!!! Disabled, in favor of kmonad
+
 ! Put Ctrl key to the sides of the keyboard
 ! Alt key to beside the Ctrl keys, 
 ! Os keys, beside the Alt
@@ -10,13 +12,13 @@
 ! ! Swap Right Alt, Print, Control 
 ! ! to Control, Alt, Print
 
-remove Control = Control_R
-remove mod1 = Alt_R
-keysym Control_R = Print
-keysym Alt_R = Control_R
-keysym Print = Alt_R Alt_R
-add Control = Control_R
-add mod1 = Alt_R
+!!remove Control = Control_R
+!!remove mod1 = Alt_R
+!!keysym Control_R = Print
+!!keysym Alt_R = Control_R
+!!keysym Print = Alt_R Alt_R
+!!add Control = Control_R
+!!add mod1 = Alt_R
 
 ! ! Swap Left Control, Super, Alt
 ! ! to Super, Alt, Control
@@ -34,20 +36,20 @@ add mod1 = Alt_R
 ! ! Swap Left Control, Super, Alt, CapsLock
 ! ! to Super, Alt, Control, CapsLock
 
-remove Control = Control_L
-remove mod1 = Alt_L
-remove mod4 = Super_L
-remove Lock = Caps_Lock
-
-keysym Control_L = Caps_Lock
-keysym Alt_L = Control_L
-keysym Super_L = Alt_L
-keysym Caps_Lock = Super_L Super_L Super_L
-
-add Control = Control_L
-add Lock = Caps_Lock
-add mod1 = Alt_L
-add mod4 = Super_L
+!!remove Control = Control_L
+!!remove mod1 = Alt_L
+!!remove mod4 = Super_L
+!!remove Lock = Caps_Lock
+!!
+!!keysym Control_L = Caps_Lock
+!!keysym Alt_L = Control_L
+!!keysym Super_L = Alt_L
+!!keysym Caps_Lock = Super_L 
+!!
+!!add Control = Control_L
+!!add Lock = Caps_Lock
+!!add mod1 = Alt_L
+!!add mod4 = Super_L
 
 !! Cubix =====
 ! ! rcontrol 0xffe4 to printscr

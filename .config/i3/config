@@ -172,10 +172,13 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        #i3bar_command man -f man
-        status_command i3status
-}
+# bar {
+#         #i3bar_command man -f man
+#         status_command i3status
+# }
+#
+### Replace i3bar with polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Disable the laptop keyboard on i3 startup
 exec_always xinput disable "SIPODEV USB Composite Device"
@@ -199,8 +202,10 @@ bindsym $mod+Return exec urxvtc
 # Set emacs daemon to start  
 exec_always 'emacs' --daemon
 
-# Remove Title bar
-new_window pixel 2
+# Remove Title bar for tiling, enable for floating
+#new_window pixel 2
+default_border pixel 2
+default_floating_border normal
 
 #### Set Media / Func Key bindings (Thinkpad)
 
@@ -233,3 +238,4 @@ bindsym XF86AudioPrev exec playerctl previous
 ##### End media bindings
 
 exec xmodmap ~/.xmodmaprc
+exec feh --bg-scale ~/Pictures/wallpapers/wallhaven-pkp1vp_1920x1080.png
