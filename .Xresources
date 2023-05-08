@@ -2,10 +2,11 @@
 ! Cubix
 ! URxvt.font: xft:IBM Plex Mono:size=11
 ! Thinkkpad
-URxvt.font: xft:IBM Plex Mono:size=12
+URxvt.font: xft:IBM Plex Mono:size=12,xft:BlexMono Nerd Font Mono:size=12
+
 URxvt.cursorBlink: true
 URxvt.scrollBar: false
-urxvt*termName: rxvt
+urxvt*termName: rxvt-unicode-256color
 Xft*hinting: true
 Xft*hintstyle: hintfull
 urxvt*allow_bold:    true
@@ -39,7 +40,8 @@ urxvt*allow_bold:    true
 !
 
 ! Enable extension
-URxvt.perl-ext-common:  ...,font-size
+!URxvt.perl-ext-common:  ...,font-size
+URxvt.perl-ext-common:  font-size
 
 URxvt.keysym.C-=:     perl:font-size:increase
 URxvt.keysym.C--:   perl:font-size:decrease
