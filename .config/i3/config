@@ -14,7 +14,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 7.5
+#font pango:monospace 7.5
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -179,9 +179,16 @@ bindsym $mod+r mode "resize"
 #
 ### Replace i3bar with polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+### REplace polybar with polybar themes
+##exec_always --no-startup-id $HOME/polybar-collection/launch.sh
+
+# Disable the thinkpad touchpad on i3 startup
+bindsym $mod+t exec xinput disable "Synaptics TM3276-022"
+bindsym $mod+Shift+t exec xinput enable "Synaptics TM3276-022"
 
 # Disable the laptop keyboard on i3 startup
-exec_always xinput disable "SIPODEV USB Composite Device"
+#exec_always xinput disable "SIPODEV USB Composite Device"
+
 bindsym $mod+semicolon exec emoji-picker
 
 # Set key speed xset r rate delay amountpersecond
