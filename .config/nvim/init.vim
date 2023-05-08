@@ -5,10 +5,13 @@ set number
 
 " this opiton does not work on URXVT alone.
 " It works with tmux on URXVT
-set termguicolors " Use gui color settings 
- 
+"set termguicolors " Use gui color settings 
+
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1 "truecolor?
 
+" Allow italics for gruvbox
+let g:gruvbox_contrast_dark = "hard" "Set to high contrast
+let g:gruvbox_italic=1
 "colorscheme let g:gruvbox_contrast_dark='hard' "Set to high contrast
 colorscheme gruvbox 
 
